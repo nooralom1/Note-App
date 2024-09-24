@@ -17,12 +17,31 @@ dependencies:
   get: ^4.6.6
   firebase_core: ^3.4.0
   cloud_firestore: ^5.3.0
+  icons_launcher: ^3.0.0
+  flutter_slidable: ^3.1.1
 
 dev_dependencies:
   flutter_test:
     sdk: flutter
-
   flutter_lints: ^3.0.0
+
+
+icons_launcher:
+  image_path: "asset/app_icon/note.png"
+  platforms:
+    android:
+      enable: true
+      image_path: "asset/app_icon/note.png"
+      notification_image: "asset/app_icon/note.png"
+      adaptive_background_image: "asset/app_icon/note.png"
+      adaptive_foreground_image: "asset/app_icon/note.png"
+      adaptive_round_image: "asset/app_icon/note.png"
+      adaptive_monochrome_image: "asset/app_icon/note.png"
+    ios:
+      enable: true
+      image_path: "asset/app_icon/note.png"
+      dark_path: "asset/app_icon/note.png"
+      tinted_path: "asset/app_icon/note.png"
 
 flutter:
 
@@ -30,3 +49,4 @@ flutter:
 
   assets:
       - asset/image/
+      - asset/app_icon/

@@ -1,13 +1,19 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:notes/controller/getx_controller/home.dart';
 import 'package:notes/view/screen/common_widget/common_text.dart';
 import 'package:notes/view/screen/home/home_screen.dart';
 
 class NoteDetails extends StatelessWidget {
-  const NoteDetails({super.key});
+  const NoteDetails(
+      {super.key, required this.tittle, required this.description, required this.dateTime,});
+  final String tittle;
+  final String description;
+  final String dateTime;
 
   @override
   Widget build(BuildContext context) {
+    Get.put(HomeController());
     return Scaffold(
       appBar: AppBar(
         backgroundColor: Colors.blue,
@@ -29,15 +35,24 @@ class NoteDetails extends StatelessWidget {
         padding: const EdgeInsets.symmetric(horizontal: 20),
         child: Column(
           children: [
-            SizedBox(height: Get.height * 0.06),
-            const CommonText(
-              text: "Product Management",
+            SizedBox(height: Get.height * 0.04),
+            Row(
+              mainAxisAlignment: MainAxisAlignment.end,
+              children: [
+                CommonText(
+                  text: dateTime,
+                  fSize: 17,
+                ),
+              ],
+            ),
+            SizedBox(height: Get.height * 0.02),
+             CommonText(
+              text: tittle,
               fSize: 22,
             ),
             SizedBox(height: Get.height * 0.04),
-            const CommonText(
-                text:
-                    "Product management is a strategic role within a company that involves overseeing the development and management of a product or suite of products throughout their lifecycle. The primary goal of a product manager is to create and deliver products that meet customer needs, align with business objectives, and generate value for the organization.Market research and analysis: Product managers conduct market research to understand customer needs, preferences, and trends. They analyze market data and competitive landscape to identify opportunities and make informed product decisions.Product strategy: Product managers define the product vision, goals, and strategy based on market research and")
+             CommonText(
+                text: description)
           ],
         ),
       ),
