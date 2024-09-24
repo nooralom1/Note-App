@@ -1,4 +1,7 @@
+
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_slidable/flutter_slidable.dart';
 import 'package:get/get.dart';
 import 'package:notes/view/screen/add_notes/add_notes_screen.dart';
 import 'package:notes/view/screen/common_widget/common_text.dart';
@@ -19,58 +22,104 @@ class Home extends StatelessWidget {
         centerTitle: true,
         automaticallyImplyLeading: false,
       ),
-      body: Padding(
-        padding: const EdgeInsets.symmetric(horizontal: 10),
-        child: ListView.builder(
-            itemCount: 10,
-            itemBuilder: (context, index) {
-              return Padding(
-                padding: const EdgeInsets.symmetric(vertical: 5),
-                child: InkWell(
-                  onTap: () {
-                    Get.to(() => const NoteDetails());
-                  },
-                  child: Container(
-                    height: Get.height * 0.2,
-                    width: Get.width,
-                    decoration: BoxDecoration(
-                        color: Colors.green,
-                        borderRadius: BorderRadius.circular(10)),
-                    child: Padding(
-                      padding: const EdgeInsets.symmetric(horizontal: 10),
-                      child: Column(
-                        children: [
-                          SizedBox(height: Get.height * 0.01),
-                          Row(
-                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                            children: [
-                              const CommonText(
-                                text: "Product Management",
-                                fWeight: FontWeight.bold,
-                                fSize: 17,
+      body: StreamBuilder(
+          stream: FirebaseFirestore.instance.collection("Notes").snapshots(),
+          builder: (context, note) {
+            if (note.hasError) {
+              return const Text("Error");
+            } else if (note.hasData) {
+              return note.data!.docs.isNotEmpty
+                  ? ListView.builder(
+                      shrinkWrap: true,
+                      itemCount: note.data?.docs.length ?? 0,
+                      itemBuilder: (context, index) {
+                        return Slidable(
+                          startActionPane:
+                          ActionPane(motion: const ScrollMotion(), children: [
+                            SlidableAction(
+                              onPressed: (context) {
+                                note.data?.docs.removeAt(index);
+                              },
+                              icon: Icons.delete,
+                              label: "Delete",
+                            )
+                          ]),
+                          endActionPane: ActionPane(motion: const ScrollMotion(), children: [
+                            SlidableAction(
+                              onPressed: (context) {
+                                note.data?.docs.removeAt(index);
+                              },
+                              icon: Icons.delete,
+                              label: "Delete",
+                            )
+                          ]),
+                          child: Padding(
+                            padding: const EdgeInsets.symmetric(
+                                vertical: 5, horizontal: 10),
+                            child: InkWell(
+                              onTap: () {
+                                Get.to(() => NoteDetails(
+                                      tittle:
+                                          '${note.data?.docs[index].data()['tittle']}',
+                                      description:
+                                          '${note.data?.docs[index].data()['description']}',
+                                      dateTime:
+                                          '${note.data?.docs[index].data()['dateTime']}',
+                                    ));
+                              },
+                              child: Container(
+                                width: Get.width,
+                                decoration: BoxDecoration(
+                                    color: Colors.green,
+                                    borderRadius: BorderRadius.circular(10)),
+                                child: Padding(
+                                  padding: const EdgeInsets.symmetric(
+                                      horizontal: 10),
+                                  child: Column(
+                                    crossAxisAlignment:
+                                        CrossAxisAlignment.start,
+                                    children: [
+                                      SizedBox(height: Get.height * 0.01),
+                                      CommonText(
+                                        text:
+                                            "${note.data?.docs[index].data()['tittle']}",
+                                        maxLines: 1,
+                                        overflow: TextOverflow.ellipsis,
+                                        fWeight: FontWeight.bold,
+                                        fSize: 17,
+                                      ),
+                                      Row(
+                                        mainAxisAlignment:
+                                            MainAxisAlignment.end,
+                                        children: [
+                                          CommonText(
+                                              text:
+                                                  "${note.data?.docs[index].data()['dateTime']}")
+                                        ],
+                                      ),
+                                      SizedBox(height: Get.height * 0.01),
+                                      CommonText(
+                                        text:
+                                            "${note.data?.docs[index].data()['description']}",
+                                        overflow: TextOverflow.ellipsis,
+                                        maxLines: 4,
+                                      )
+                                    ],
+                                  ),
+                                ),
                               ),
-                              CommonText(
-                                  text: DateTime.now()
-                                      .toString()
-                                      .substring(0, 16)
-                                      .toString())
-                            ],
+                            ),
                           ),
-                          SizedBox(height: Get.height * 0.01),
-                          const CommonText(
-                            text:
-                                "Product management is a strategic role within a company that involves overseeing the development and management of a product or suite of products throughout their lifecycle. The primary goal of a product manager is to create and deliver products that meet customer needs, align with business objectives, and generate value for the organization.Market research and analysis: Product managers conduct market research to understand customer needs, preferences, and trends. They analyze market data and competitive landscape to identify opportunities and make informed product decisions.Product strategy: Product managers define the product vision, goals, and strategy based on market research and",
-                            overflow: TextOverflow.ellipsis,
-                            maxLines: 5,
-                          )
-                        ],
+                        );
+                      })
+                  : const Center(
+                      child: CommonText(
+                        text: "No Data Found",
                       ),
-                    ),
-                  ),
-                ),
-              );
-            }),
-      ),
+                    );
+            }
+            return const Center(child: CircularProgressIndicator(),);
+          }),
       floatingActionButton: FloatingActionButton(
         onPressed: () {
           Get.to(() => const AddNotes());

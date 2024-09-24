@@ -1,0 +1,49 @@
+{
+  "project_info": {
+    "project_number": "938519338666",
+    "firebase_url": "https://user-info-ad3dc-default-rtdb.firebaseio.com",
+    "project_id": "user-info-ad3dc",
+    "storage_bucket": "user-info-ad3dc.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:938519338666:android:2ab4f1bd86bcaf5540fad3",
+        "android_client_info": {
+          "package_name": "com.example.firebase_learn"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDGaLbq6zlZPipmXw-63CNjAFrhLdvQKLA"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:938519338666:android:9cf1b8d333d91bd740fad3",
+        "android_client_info": {
+          "package_name": "com.noor.notes"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDGaLbq6zlZPipmXw-63CNjAFrhLdvQKLA"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
