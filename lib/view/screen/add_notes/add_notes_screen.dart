@@ -1,5 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:notes/controller/getx_controller/add_notes.dart';
+import 'package:notes/controller/getx_controller/home.dart';
+import 'package:notes/view/screen/add_notes/widget/date_time_field.dart';
+import 'package:notes/view/screen/add_notes/widget/description_field.dart';
+import 'package:notes/view/screen/add_notes/widget/tittle_field.dart';
 import 'package:notes/view/screen/common_widget/common_button.dart';
 import 'package:notes/view/screen/common_widget/common_text.dart';
 import 'package:notes/view/screen/home/home_screen.dart';
@@ -9,6 +14,8 @@ class AddNotes extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    AddNotesController addNotesController = Get.put(AddNotesController());
+    HomeController homeController = Get.put(HomeController());
     return Scaffold(
       appBar: AppBar(
         backgroundColor: Colors.blue,
@@ -31,25 +38,20 @@ class AddNotes extends StatelessWidget {
         child: SingleChildScrollView(
           child: Column(
             children: [
-              SizedBox(height: Get.height * 0.06),
+              SizedBox(height: Get.height * 0.02),
+              Row(
+                mainAxisAlignment: MainAxisAlignment.end,
+                children: [
+                  DateTimeField(controller: addNotesController.dateTimeController,),
+                ],
+              ),
               const Row(
                 mainAxisAlignment: MainAxisAlignment.start,
                 children: [
                   CommonText(text: "Title", fWeight: FontWeight.w600),
                 ],
               ),
-              Container(
-                height: Get.height * 0.06,
-                width: Get.width,
-                decoration: BoxDecoration(
-                    borderRadius: BorderRadius.circular(10),
-                    border: Border.all()),
-                child: const TextField(
-                  decoration: InputDecoration(
-                      hintText: "Input a Title",
-                      border: OutlineInputBorder(borderSide: BorderSide.none)),
-                ),
-              ),
+              TittleField(controller: addNotesController.tittleController,),
               SizedBox(height: Get.height * 0.04),
               const Row(
                 mainAxisAlignment: MainAxisAlignment.start,
@@ -57,24 +59,17 @@ class AddNotes extends StatelessWidget {
                   CommonText(text: "Description", fWeight: FontWeight.w600),
                 ],
               ),
-              Container(
-                height: Get.height * 0.4,
-                width: Get.width,
-                decoration: BoxDecoration(
-                    borderRadius: BorderRadius.circular(10),
-                    border: Border.all()),
-                child: const TextField(
-                  decoration: InputDecoration(
-                      hintText: "Input a Description",
-                      border: OutlineInputBorder(borderSide: BorderSide.none)),
-                ),
-              ),
+              DescriptionField(controller: addNotesController.descriptionController,),
               SizedBox(height: Get.height * 0.1),
               CommonButton(
                   height: Get.height * 0.06,
                   width: Get.width,
                   btnName: ("Save"),
-                  onTap: () {})
+                  onTap: ()async{
+                    await addNotesController.addNotes();
+                    await homeController.getNotes();
+                    Get.off(()=>const Home());
+                  })
             ],
           ),
         ),
