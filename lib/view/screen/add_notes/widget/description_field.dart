@@ -3,7 +3,8 @@ import 'package:get/get.dart';
 
 class DescriptionField extends StatelessWidget {
   const DescriptionField({
-    super.key, required this.controller,
+    super.key,
+    required this.controller,
   });
   final TextEditingController controller;
 
@@ -13,8 +14,7 @@ class DescriptionField extends StatelessWidget {
       height: Get.height * 0.4,
       width: Get.width,
       decoration: BoxDecoration(
-          borderRadius: BorderRadius.circular(10),
-          border: Border.all()),
+          borderRadius: BorderRadius.circular(10), border: Border.all()),
       child: TextField(
         maxLines: 10,
         controller: controller,
