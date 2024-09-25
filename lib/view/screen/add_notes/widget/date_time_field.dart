@@ -18,9 +18,7 @@ class DateTimeField extends StatelessWidget {
         controller: controller,
         decoration:  InputDecoration(
             hintText: DateTime.now().toString().substring(0,16),
-            filled: true,
-            fillColor: Colors.white,
-            border: OutlineInputBorder(borderSide: BorderSide.none)),
+            border: const OutlineInputBorder(borderSide: BorderSide.none)),
       ),
     );
   }
