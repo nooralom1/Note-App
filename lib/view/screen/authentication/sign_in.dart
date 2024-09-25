@@ -37,7 +37,8 @@ class SignIn extends StatelessWidget {
                     fColor: Colors.blue,
                   )
                 ]),
-                const CommonText(text: "We missed you! Signin to continue your"),
+                const CommonText(
+                    text: "We missed you! Signin to continue your"),
                 const CommonText(text: "journey with us."),
                 SizedBox(height: screenHeight * 0.04),
                 const Row(
@@ -57,10 +58,12 @@ class SignIn extends StatelessWidget {
                 Obx(() => controller.isLoading.value
                     ? const CommonLoadingButton()
                     : CommonButton(
-                    height: screenHeight * 0.06,
-                    width: screenWidth,
-                    btnName: "Sign In",
-                    onTap: ()  {Get.offAll(()=>const Home());})),
+                        height: screenHeight * 0.06,
+                        width: screenWidth,
+                        btnName: "Sign In",
+                        onTap: () {
+                          Get.offAll(() => const Home());
+                        })),
                 SizedBox(height: screenHeight * 0.04),
                 const Divider(),
                 SizedBox(height: screenHeight * 0.03),
