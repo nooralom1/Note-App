@@ -17,6 +17,7 @@ class AddNotes extends StatelessWidget {
     AddNotesController addNotesController = Get.put(AddNotesController());
     HomeController homeController = Get.put(HomeController());
     return Scaffold(
+      backgroundColor: const Color(0xffffffcc),
       appBar: AppBar(
         backgroundColor: Colors.blue,
         title: const Text(
