@@ -13,12 +13,11 @@ class CommonLoadingButton extends StatelessWidget {
         height: screenHeight * 0.06,
         width: screenWidth * 0.9,
         decoration: BoxDecoration(
-            color: Colors.blue,
-            borderRadius: BorderRadius.circular(10)),
+            color: Colors.blue, borderRadius: BorderRadius.circular(10)),
         child: const Center(
             child: CircularProgressIndicator(
-              color: Colors.white,
-              backgroundColor: Colors.blue,
-            )));
+          color: Colors.white,
+          backgroundColor: Colors.blue,
+        )));
   }
 }
