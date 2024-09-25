@@ -27,7 +27,7 @@ class AddNotes extends StatelessWidget {
         centerTitle: true,
         leading: IconButton(
             onPressed: () {
-              Get.off(()=>const Home());
+              Get.off(() => const Home());
             },
             icon: const Icon(
               Icons.arrow_back,
@@ -43,7 +43,9 @@ class AddNotes extends StatelessWidget {
               Row(
                 mainAxisAlignment: MainAxisAlignment.end,
                 children: [
-                  DateTimeField(controller: addNotesController.dateTimeController,),
+                  DateTimeField(
+                    controller: addNotesController.dateTimeController,
+                  ),
                 ],
               ),
               const Row(
@@ -52,7 +54,9 @@ class AddNotes extends StatelessWidget {
                   CommonText(text: "Title", fWeight: FontWeight.w600),
                 ],
               ),
-              TittleField(controller: addNotesController.tittleController,),
+              TittleField(
+                controller: addNotesController.tittleController,
+              ),
               SizedBox(height: Get.height * 0.04),
               const Row(
                 mainAxisAlignment: MainAxisAlignment.start,
@@ -60,16 +64,18 @@ class AddNotes extends StatelessWidget {
                   CommonText(text: "Description", fWeight: FontWeight.w600),
                 ],
               ),
-              DescriptionField(controller: addNotesController.descriptionController,),
+              DescriptionField(
+                controller: addNotesController.descriptionController,
+              ),
               SizedBox(height: Get.height * 0.1),
               CommonButton(
                   height: Get.height * 0.06,
                   width: Get.width,
                   btnName: ("Save"),
-                  onTap: ()async{
+                  onTap: () async {
                     await addNotesController.addNotes();
                     await homeController.getNotes();
-                    Get.off(()=>const Home());
+                    Get.off(() => const Home());
                   })
             ],
           ),
