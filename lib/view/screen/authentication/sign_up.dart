@@ -25,7 +25,7 @@ class SignUp extends StatelessWidget {
             padding: const EdgeInsets.symmetric(horizontal: 20),
             child: Column(
               children: [
-                SizedBox(height: Get.height*0.04),
+                SizedBox(height: Get.height * 0.04),
                 Row(mainAxisAlignment: MainAxisAlignment.center, children: [
                   const CommonText(
                       text: "Create", fSize: 25, fWeight: FontWeight.bold),
@@ -71,12 +71,12 @@ class SignUp extends StatelessWidget {
                 Obx(() => controller.isLoading.value
                     ? const CommonLoadingButton()
                     : CommonButton(
-                    height: screenHeight * 0.06,
-                    width: screenWidth,
-                    btnName: "Sign Up",
-                    onTap: ()  {
-                        Get.off(() => const SignIn());
-                    })),
+                        height: screenHeight * 0.06,
+                        width: screenWidth,
+                        btnName: "Sign Up",
+                        onTap: () {
+                          Get.off(() => const SignIn());
+                        })),
                 SizedBox(height: screenHeight * 0.04),
                 const Divider(),
                 SizedBox(height: screenHeight * 0.03),

@@ -7,14 +7,6 @@ class SignUpController extends GetxController {
   TextEditingController mailController = TextEditingController();
   TextEditingController passController = TextEditingController();
 
-  // Future<bool> signUpService() async {
-  //   bool status = await SignUpService.signUpService(
-  //       name: nameController.text,
-  //       mail: mailController.text,
-  //       pass: passController.text);
-  //   return status;
-  // }
-
   @override
   void onInit() {
     nameController.text = "Noor Alam";
