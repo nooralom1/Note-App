@@ -5,8 +5,12 @@ import 'package:notes/view/screen/common_widget/common_text.dart';
 import 'package:notes/view/screen/home/home_screen.dart';
 
 class NoteDetails extends StatelessWidget {
-  const NoteDetails(
-      {super.key, required this.tittle, required this.description, required this.dateTime,});
+  const NoteDetails({
+    super.key,
+    required this.tittle,
+    required this.description,
+    required this.dateTime,
+  });
   final String tittle;
   final String description;
   final String dateTime;
@@ -15,10 +19,11 @@ class NoteDetails extends StatelessWidget {
   Widget build(BuildContext context) {
     Get.put(HomeController());
     return Scaffold(
+      backgroundColor: const Color(0xffffffcc),
       appBar: AppBar(
         backgroundColor: Colors.blue,
         title: const Text(
-          "Add Notes",
+          "Note",
           style: TextStyle(color: Colors.white),
         ),
         centerTitle: true,
@@ -32,28 +37,29 @@ class NoteDetails extends StatelessWidget {
             )),
       ),
       body: Padding(
-        padding: const EdgeInsets.symmetric(horizontal: 20),
-        child: Column(
-          children: [
-            SizedBox(height: Get.height * 0.04),
-            Row(
-              mainAxisAlignment: MainAxisAlignment.end,
-              children: [
-                CommonText(
-                  text: dateTime,
-                  fSize: 17,
-                ),
-              ],
-            ),
-            SizedBox(height: Get.height * 0.02),
-             CommonText(
-              text: tittle,
-              fSize: 22,
-            ),
-            SizedBox(height: Get.height * 0.04),
-             CommonText(
-                text: description)
-          ],
+        padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 10),
+        child: SingleChildScrollView(
+          child: Column(
+            children: [
+              Row(
+                mainAxisAlignment: MainAxisAlignment.end,
+                children: [
+                  CommonText(
+                    text: dateTime,
+                    fSize: 20
+                  ),
+                ],
+              ),
+              SizedBox(height: Get.height * 0.02),
+              CommonText(
+                text: tittle,
+                fSize: 22,
+                fWeight: FontWeight.bold,
+              ),
+              SizedBox(height: Get.height * 0.04),
+              CommonText(text: description,fSize: 16,)
+            ],
+          ),
         ),
       ),
     );
