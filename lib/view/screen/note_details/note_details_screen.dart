@@ -44,10 +44,7 @@ class NoteDetails extends StatelessWidget {
               Row(
                 mainAxisAlignment: MainAxisAlignment.end,
                 children: [
-                  CommonText(
-                    text: dateTime,
-                    fSize: 20
-                  ),
+                  CommonText(text: dateTime, fSize: 20),
                 ],
               ),
               SizedBox(height: Get.height * 0.02),
@@ -57,7 +54,10 @@ class NoteDetails extends StatelessWidget {
                 fWeight: FontWeight.bold,
               ),
               SizedBox(height: Get.height * 0.04),
-              CommonText(text: description,fSize: 16,)
+              CommonText(
+                text: description,
+                fSize: 16,
+              )
             ],
           ),
         ),
