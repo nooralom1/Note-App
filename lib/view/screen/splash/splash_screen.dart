@@ -17,7 +17,10 @@ class Splash extends StatelessWidget {
             SizedBox(
                 height: Get.height * 0.4,
                 width: Get.width * 0.8,
-                child: Image.asset("asset/image/splash-removebg-preview.png",fit: BoxFit.fill,)),
+                child: Image.asset(
+                  "asset/image/splash-removebg-preview.png",
+                  fit: BoxFit.fill,
+                )),
             const CommonText(
                 text: 'Welcome to Note App',
                 fColor: Colors.blue,

@@ -3,7 +3,8 @@ import 'package:get/get.dart';
 
 class TittleField extends StatelessWidget {
   const TittleField({
-    super.key, required this.controller,
+    super.key,
+    required this.controller,
   });
   final TextEditingController controller;
 
@@ -13,8 +14,7 @@ class TittleField extends StatelessWidget {
       height: Get.height * 0.1,
       width: Get.width,
       decoration: BoxDecoration(
-          borderRadius: BorderRadius.circular(10),
-          border: Border.all()),
+          borderRadius: BorderRadius.circular(10), border: Border.all()),
       child: TextField(
         controller: controller,
         decoration: const InputDecoration(
